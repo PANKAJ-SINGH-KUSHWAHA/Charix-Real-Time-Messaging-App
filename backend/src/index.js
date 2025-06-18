@@ -4,19 +4,25 @@ import cookieParser from 'cookie-parser'; // It is a middleware for parsing cook
 import { connectDB } from './lib/db.js'; // Importing the database connection function
 import authRoutes from './routes/authRoutes.js'; // Importing the authentication routes
 import messageRoutes from './routes/messageRoutes.js'; // Importing the message routes
+import cors from "cors"
 
 const app = express();
 dotenv.config(); // Load environment variables from .env file
 app.use(express.json());
 app.use(cookieParser()); // Middleware to parse cookies in requests
+app.use(cors({
+    origin: "http://localhost:5173", // Allow requests from the client URL
+    credentials: true, // Allow cookies to be sent with requests
+}))
+
 
 const PORT = process.env.PORT;
+
 app.use("/api/auth", authRoutes);
 app.use("/api/message",messageRoutes);
 
-app.get('/', (req, res) => {
-    res.send('Welcome to the API');
-})
+
+
 
 app.listen(PORT, () => {
     console.log('Server is running on PORT : '+PORT);
