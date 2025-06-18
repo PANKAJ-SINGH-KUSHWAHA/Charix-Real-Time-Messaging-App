@@ -3,14 +3,17 @@ import dotenv from 'dotenv'; // It is a zero-dependency module that loads enviro
 import cookieParser from 'cookie-parser'; // It is a middleware for parsing cookies in HTTP requests
 import { connectDB } from './lib/db.js'; // Importing the database connection function
 import authRoutes from './routes/authRoutes.js'; // Importing the authentication routes
+import messageRoutes from './routes/messageRoutes.js'; // Importing the message routes
 
 const app = express();
 dotenv.config(); // Load environment variables from .env file
 app.use(express.json());
 app.use(cookieParser()); // Middleware to parse cookies in requests
+
 const PORT = process.env.PORT;
 app.use("/api/auth", authRoutes);
- // Middleware to parse JSON request bodies
+app.use("/api/message",messageRoutes);
+
 app.get('/', (req, res) => {
     res.send('Welcome to the API');
 })
