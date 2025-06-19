@@ -8,7 +8,8 @@ import cors from "cors"
 
 const app = express();
 dotenv.config(); // Load environment variables from .env file
-app.use(express.json());
+app.use(express.json({limit:'20mb'}));
+app.use(express.urlencoded({ extended: true, limit: '20mb' }));
 app.use(cookieParser()); // Middleware to parse cookies in requests
 app.use(cors({
     origin: "http://localhost:5173", // Allow requests from the client URL
