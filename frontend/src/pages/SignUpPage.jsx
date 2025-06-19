@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
-import { Eye, EyeOff, Loader2, Lock, Mail, MessageSquare, User } from "lucide-react";
+import { Eye, EyeOff, Loader2, Lock, Mail , MessageSquare} from "lucide-react";
+import { User } from "lucide-react";
 
 import toast from "react-hot-toast";
 
@@ -57,7 +58,7 @@ const SignUpPage = () => {
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <User className="size-5" />
+                  <User className="size-5 text-base-content/40" />
                 </div>
                 <input
                   type="text"
