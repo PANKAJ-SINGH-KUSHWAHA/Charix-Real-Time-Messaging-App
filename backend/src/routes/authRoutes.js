@@ -3,6 +3,9 @@ import { signup, login, logout, updateProfile, checkAuth } from '../controllers/
 import { protectRoute } from '../middleware/protectRouteMiddleware.js'; // Importing the middleware to protect routes
 const router = express.Router();
 
+console.log("✅ authRoutes loaded");
+
+
 router.post('/signup', signup); // Route for user signup
 router.post('/login', login); // Route for user login
 router.post('/logout', logout); // Route for user logout
