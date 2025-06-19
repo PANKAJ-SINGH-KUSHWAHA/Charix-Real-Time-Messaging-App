@@ -2,19 +2,16 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
+  "license": "ISC",
+  "description": "Charix backend server",
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "type": "module",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "bcryptjs": "^3.0.2",
-    "charix-real-time-messaging-app": "file:..",
     "cloudinary": "^2.6.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
