@@ -7,7 +7,7 @@ import SettingPage from './pages/SettingPage';
 import ProfilePage from './pages/ProfilePage'; 
 import { useAuthStore } from './store/useAuthStore';
 import { useEffect } from 'react';
-
+import { Toaster } from 'react-hot-toast';
 import {Loader} from 'lucide-react';
 
 const App = () => {
@@ -28,6 +28,10 @@ const App = () => {
 
   return (
     <>
+      <Toaster position="top-center" toastOptions={{duration:3000, style:{
+        background: '#333',
+        color: '#fff',
+      }}} />
       <Navbar />
       <Routes>
         <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
