@@ -1,6 +1,6 @@
 import User from '../models/userModel.js';
 import Message from '../models/messageModel.js';
-
+import cloudinary from '../lib/cloudinary.js';
 // This controller fetches all users except the logged-in user for the sidebar
 export const getUsersForSidebar = async(req,res)=>{
     try{
