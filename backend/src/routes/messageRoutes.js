@@ -3,8 +3,6 @@ import { protectRoute } from '../middleware/protectRouteMiddleware.js';
 import { getUsersForSidebar, getMessages, sendMessage } from '../controllers/messageController.js';
 const router = express.Router();
 
-
-
 router.get("/users",protectRoute, getUsersForSidebar);
 router.get("/:id", protectRoute, getMessages);
 
