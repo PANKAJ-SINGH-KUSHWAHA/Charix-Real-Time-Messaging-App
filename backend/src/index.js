@@ -7,8 +7,8 @@ import { connectDB } from './lib/db.js'; // Importing the database connection fu
 import authRoutes from './routes/authRoutes.js'; // Importing the authentication routes
 import messageRoutes from './routes/messageRoutes.js'; // Importing the message routes
 
-import cors from "cors";
-import path from "path";
+import cors from "cors"
+import path from "path"
 
 import {app, server} from "./lib/socket.js"
 
