@@ -11,6 +11,6 @@
   "license": "ISC",
   "description": "Build for real time instant messaging",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^5.1.0"
   }
 }
