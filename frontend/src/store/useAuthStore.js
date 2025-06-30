@@ -37,7 +37,9 @@ export const useAuthStore = create((set, get) => ({
         // Show success message that OTP is sent
         toast.success(res.data.message || "OTP sent to email");
 
-        window.location.href = `/verify-otp?email=${encodeURIComponent(data.email)}`;
+        // ✅ Remove navigation responsibility from the store
+        return { email: data.email }; // or simply return a success flag
+
     } catch (error) {
         console.log(error.response);
         toast.error('Error creating account: ' + (error.response?.data?.message || error.message));
@@ -55,7 +57,7 @@ export const useAuthStore = create((set, get) => ({
     toast.success('Account verified successfully');
 
     get().connectSocket();
-    window.location.href = `/`;
+    return true;
   } catch (error) {
     toast.error('OTP verification failed: ' + (error.response?.data?.message || error.message));
   }

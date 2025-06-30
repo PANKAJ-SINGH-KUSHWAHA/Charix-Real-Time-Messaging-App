@@ -18,8 +18,10 @@ const VerifyOtp = () => {
     if (!otp || otp.length !== 6) return;
 
     setSubmitting(true);
-    await verifyOtp({ email, otp }, navigate);
+    const success = await verifyOtp({ email, otp });
     setSubmitting(false);
+    
+    if (success) { navigate('/')}
   };
 
   return (

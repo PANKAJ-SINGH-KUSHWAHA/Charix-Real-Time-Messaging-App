@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
 import { Eye, EyeOff, Loader2, Lock, Mail , MessageSquare, User} from "lucide-react";
 import toast from "react-hot-toast";
@@ -14,6 +14,7 @@ const SignUpPage = () => {
   });
 
   const { signup, isSigningUp } = useAuthStore();
+  const navigate = useNavigate();
   
   const validateForm = () => {
     if (!formData.fullname.trim()) return toast.error("Full name is required");
@@ -25,12 +26,18 @@ const SignUpPage = () => {
     return true;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
     const success = validateForm();
 
-    if (success === true) signup(formData);
+    if (success === true) {
+      const result = await signup(formData);
+  if (result?.email) {
+    navigate(`/verify-otp?email=${encodeURIComponent(result.email)}`);
+  }
+}
+
   };
 
   return (
