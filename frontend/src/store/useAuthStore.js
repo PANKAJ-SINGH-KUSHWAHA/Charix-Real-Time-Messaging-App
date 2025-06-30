@@ -28,23 +28,38 @@ export const useAuthStore = create((set, get) => ({
         }
     },
 
-    signup: async(data) => {
+    signup: async (data) => {
     set({ isSigningUp: true });
     try {
-        console.log("Signing up with:", data); // 👈 Already done
-
+        
         const res = await axiosInstance.post('/auth/signup', data);
-        set({ authUser: res.data });
-        toast.success('Account created successfully');
 
-        get().connectSocket();
-    } catch(error) {
-        console.log(error.response); // 👈 ADD THIS
+        // Show success message that OTP is sent
+        toast.success(res.data.message || "OTP sent to email");
+
+        window.location.href = `/verify-otp?email=${encodeURIComponent(data.email)}`;
+    } catch (error) {
+        console.log(error.response);
         toast.error('Error creating account: ' + (error.response?.data?.message || error.message));
     } finally {
         set({ isSigningUp: false });
-        }
-    },
+    }
+},
+
+    verifyOtp: async ({ email, otp }) => {
+  try {
+    const res = await axiosInstance.post('/auth/verify-otp', { email, otp });
+
+    // Now create session and login
+    set({ authUser: res.data });
+    toast.success('Account verified successfully');
+
+    get().connectSocket();
+    window.location.href = `/`;
+  } catch (error) {
+    toast.error('OTP verification failed: ' + (error.response?.data?.message || error.message));
+  }
+},
 
     login: async (data) => {
         set({ isLoggingIn: true });
@@ -82,7 +97,7 @@ export const useAuthStore = create((set, get) => ({
             toast.success("Profile Updated Succesfully");
         }
         catch(errror){
-            console.log("error in updatinf the profile:", error);
+            console.log("error in updating the profile:", error);
             toast.error(error.response.data.message);
         }finally{
             set({isUpdatingProfile: false});

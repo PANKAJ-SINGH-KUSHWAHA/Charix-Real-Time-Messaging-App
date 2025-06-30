@@ -14,7 +14,7 @@ const SignUpPage = () => {
   });
 
   const { signup, isSigningUp } = useAuthStore();
-
+  
   const validateForm = () => {
     if (!formData.fullname.trim()) return toast.error("Full name is required");
     if (!formData.email.trim()) return toast.error("Email is required");
