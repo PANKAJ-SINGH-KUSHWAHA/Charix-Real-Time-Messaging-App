@@ -15,9 +15,8 @@ A real-time chat application built with modern web technologies. Users can regis
 ## 🛠️ Tech Stack
 
 **Frontend:**
-- HTML, CSS, JavaScript
-- React (if used)
-- TailwindCSS / Bootstrap (if applicable)
+- React.js,  vite
+- TailwindCSS 
 
 **Backend:**
 - Node.js
